@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Expense =  mongoose.Schema({
     category_type : String,
-    amount : Float32Array,
+    amount : Number,
     date : {
         type : Date,
         default : Date.now

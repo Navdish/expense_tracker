@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const {Users} = require('./Schema.js');
-const {Products} = require('./Schema.js')
+// const {Users} = require('./Schema.js');
+// const {Products} = require('./Schema.js')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const cors = require('cors')
