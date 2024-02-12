@@ -3,8 +3,11 @@ import {useState} from 'react'
 import './Login.css'
 import axios from 'axios'
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function Login(){
+
+    const navigate = useNavigate();
     axios.defaults.headers.common['jwt-token'] = Cookies.get('token');
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,12 +15,15 @@ function Login(){
     // const comm = async()=> axios.get("http://localhost:8080");
     async function handleSubmit(e) {
         e.preventDefault();
-        const response_token = await login({email, password});
-        //console.log(response_token.data);
-        Cookies.set('token', response_token.data, { expires: 7, secure: true });
-        // console.log(Cookies.get('token'));
-        // const response = await comm();
-        // console.log(response.data);
+        try {
+            const response_token = await login({email, password});
+            Cookies.set('token', response_token.data, { expires: 7, secure: true });
+            // console.log("response",response_token);
+            navigate("/Home");
+        }
+        catch(error) {
+            console.log(error);
+        }
     }
     return (
         <div className='login'>
